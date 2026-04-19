@@ -34,6 +34,11 @@ const routes = computed(() => router.getRoutes());
   display: inline-flex;
   gap: 12px;
 }
+.app-layout__navigation,
+.app-layout__navigation li {
+  margin: 0;
+  padding: 0;
+}
 .app-layout__main {
   display: flex;
   flex-direction: column;
