@@ -2,7 +2,7 @@
   "compilerOptions": {
     "incremental": false,
     "tsBuildInfoFile": null,
-    "lib": ["ESNext"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "types": ["vite/client"],
     "target": "ESNext",
     "module": "Preserve",
