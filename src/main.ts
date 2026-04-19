@@ -8,7 +8,10 @@ const pinia = createPinia();
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: [{ path: '/', name: 'home', component: () => import('@/views/home/home.vue') }],
+  routes: [
+    { path: '/', name: 'home', component: () => import('@/views/home/home.vue') },
+    { path: '/settings', name: 'settings', component: () => import('@/views/settings/settings.vue') },
+  ],
   linkActiveClass: 'link-active',
 });
 
