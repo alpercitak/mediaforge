@@ -50,18 +50,3 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
-
-a {
-  text-decoration: none;
-}
-a:visited {
-  color: inherit;
-}
-a:hover {
-  color: var(--color-accent-soft) !important;
-}
-
-/* vue-router */
-.link-active {
-  color: var(--color-accent) !important;
-}
