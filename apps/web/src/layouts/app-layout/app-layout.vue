@@ -39,6 +39,18 @@ const routes = computed(() => router.getRoutes());
   margin: 0;
   padding: 0;
 }
+.app-layout__navigation a {
+  text-decoration: none;
+}
+.app-layout__navigation a:hover {
+  color: var(--color-accent-soft);
+}
+.app-layout__navigation a:visited {
+  color: inherit;
+}
+:deep(.link-active) {
+  color: var(--color-accent) !important;
+}
 .app-layout__main {
   display: flex;
   flex-direction: column;
