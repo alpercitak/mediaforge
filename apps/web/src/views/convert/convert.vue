@@ -18,11 +18,11 @@ import { storeToRefs } from 'pinia';
 import { computed, ref } from 'vue';
 import type { MediaFormat } from '@mediaforge/media/types';
 import ButtonDownload from '@/components/app/button-download.vue';
+import MediaContainer from '@/components/app/media-container.vue';
 import Dropdown from '@/components/ui/dropdown.vue';
 import ProcessLayout from '@/layouts/process-layout/process-layout.vue';
 import { useMediaStore } from '@/stores/media';
 import ButtonConvert from './components/button-convert.vue';
-import MediaContainer from './components/media-container.vue';
 
 const { isInProgress, medias, hasMedias, processedMediasCount } = storeToRefs(useMediaStore());
 

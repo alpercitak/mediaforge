@@ -16,6 +16,7 @@
         "@ffmpeg/ffmpeg": "^0.12.15",
         "@ffmpeg/util": "^0.12.2",
         "@mediaforge/ffmpeg": "workspace:",
+        "@mediaforge/ffmpeg-concat": "workspace:",
         "@mediaforge/ffmpeg-convert": "workspace:",
         "@mediaforge/media": "workspace:",
         "pinia": "^3.0.4",
@@ -38,6 +39,21 @@
       },
       "devDependencies": {
         "@types/bun": "catalog:",
+      },
+      "peerDependencies": {
+        "typescript": "catalog:",
+      },
+    },
+    "packages/ffmpeg-concat": {
+      "name": "@mediaforge/ffmpeg-concat",
+      "dependencies": {
+        "@mediaforge/ffmpeg": "workspace:",
+        "@mediaforge/media": "workspace:",
+        "bunup": "catalog:",
+      },
+      "devDependencies": {
+        "@types/bun": "catalog:",
+        "vitest": "catalog:",
       },
       "peerDependencies": {
         "typescript": "catalog:",
@@ -115,6 +131,8 @@
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
 
     "@mediaforge/ffmpeg": ["@mediaforge/ffmpeg@workspace:packages/ffmpeg"],
+
+    "@mediaforge/ffmpeg-concat": ["@mediaforge/ffmpeg-concat@workspace:packages/ffmpeg-concat"],
 
     "@mediaforge/ffmpeg-convert": ["@mediaforge/ffmpeg-convert@workspace:packages/ffmpeg-convert"],
 
