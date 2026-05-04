@@ -1,16 +1,17 @@
 <template>
-  <button @click="onConcat">Concat</button>
+  <Button @click="onConcat">Concat</Button>
 </template>
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
+import type { ConcatFormat } from '@mediaforge/ffmpeg-concat/types';
+import { getFFmpegConcatArgs } from '@mediaforge/ffmpeg-concat/utils';
+import { QUALITY_OPTION_MAP } from '@mediaforge/ffmpeg/constants';
 import type { MediaType } from '@mediaforge/media/types';
 import { getMediaInfo } from '@mediaforge/media/utils';
-import { QUALITY_OPTION_MAP } from '@mediaforge/ffmpeg/constants';
-import { getFFmpegConcatArgs } from '@mediaforge/ffmpeg-concat/utils';
-import type { ConcatFormat } from '@mediaforge/ffmpeg-concat/types';
-import { useMediaStore } from '@/stores/media';
+import Button from '@/components/ui/button.vue';
 import { useFfmpegRunner } from '@/composables/ffmpeg-runner';
+import { useMediaStore } from '@/stores/media';
 
 const { medias } = storeToRefs(useMediaStore());
 const { runFfmpeg } = useFfmpegRunner();

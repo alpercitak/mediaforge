@@ -1,5 +1,5 @@
 <template>
-  <button @click="onConvert">Convert</button>
+  <Button @click="onConvert">Convert</Button>
 </template>
 
 <script setup lang="ts">
@@ -8,6 +8,7 @@ import { QUALITY_OPTION_MAP } from '@mediaforge/ffmpeg/constants';
 import { getFFmpegConvertArgs } from '@mediaforge/ffmpeg-convert/utils';
 import type { MediaFormat } from '@mediaforge/media/types';
 import { getMediaInfo } from '@mediaforge/media/utils';
+import Button from '@/components/ui/button.vue';
 import { useFfmpegRunner } from '@/composables/ffmpeg-runner';
 import { useMediaStore } from '@/stores/media';
 
