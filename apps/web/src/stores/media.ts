@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
-import type { Medias } from '@/types/app';
+import type { Medias } from '@/types';
 
 export const useMediaStore = defineStore('media', () => {
   const medias = ref<Medias>([]);
