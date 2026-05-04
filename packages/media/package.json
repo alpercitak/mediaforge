@@ -1,0 +1,34 @@
+{
+  "name": "@mediaforge/media",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./types": {
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/types/index.js"
+      }
+    },
+    "./utils": {
+      "import": {
+        "types": "./dist/utils/index.d.ts",
+        "default": "./dist/utils/index.js"
+      }
+    }
+  },
+  "scripts": {
+    "dev": "bunup --watch",
+    "build": "bunup"
+  },
+  "dependencies": {
+    "bunup": "catalog:"
+  },
+  "devDependencies": {
+    "@types/bun": "catalog:"
+  },
+  "peerDependencies": {
+    "typescript": "catalog:"
+  }
+}
