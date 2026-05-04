@@ -1,12 +1,29 @@
 import { ffmpegArg } from '@mediaforge/ffmpeg/utils';
 import type { ConcatFormat, ConcatOptions } from '../types';
 
-const buildInputFilters = (count: number, fps?: number, width?: number): string => {
+const makeEven = (num: number) => (num % 2 === 0 ? num : num - 1);
+
+const buildInputFilters = (count: number, fps?: number, width?: number, height?: number): string => {
+  const targetW = width ? makeEven(width) : 1280;
+  const targetH = height ? makeEven(height) : makeEven(Math.round(targetW * (9 / 16)));
+
   const inputFilters = Array.from({ length: count }, (_, i) => {
     const label = `[v${i}]`;
-    const source = `[${i}:v:0]`;
-    const filters = [fps ? `fps=${fps}` : '', width ? `scale=${width}:-1:flags=lanczos` : ''].filter(Boolean).join(',');
-    return `${source}${filters ? `${filters}` : ''}${label}`;
+    const source = `[${i}:v]`;
+
+    const filterChain = [];
+
+    if (fps) {
+      filterChain.push(`fps=${fps}`);
+    }
+
+    filterChain.push(
+      `scale=${targetW}:${targetH}:force_original_aspect_ratio=decrease`,
+      `pad=${targetW}:${targetH}:(ow-iw)/2:(oh-ih)/2`,
+      `setsar=1`,
+    );
+
+    return `${source}${filterChain.join(',')}${label}`;
   });
 
   return inputFilters.join(';');
