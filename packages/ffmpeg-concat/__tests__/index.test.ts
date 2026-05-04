@@ -2,14 +2,6 @@ import { describe, expect, it } from 'vitest';
 import { getFFmpegConcatArgs } from '../src/utils';
 import { MP4_CONCAT_ARGS, WEBM_CONCAT_ARGS } from './fixtures/ffmpeg-args';
 
-const BASE_OPTIONS = {
-  inputs: ['a.mp4', 'b.mp4'],
-  output: 'out.mp4',
-  format: 'mp4' as const,
-  width: 320,
-  fps: 24,
-};
-
 describe('ffmpeg-concat', () => {
   it('should return empty args when inputs are less than two', () => {
     const args = getFFmpegConcatArgs({
@@ -21,7 +13,14 @@ describe('ffmpeg-concat', () => {
   });
 
   it('should generate [mp4] args correctly', () => {
-    const args = getFFmpegConcatArgs(BASE_OPTIONS);
+    const args = getFFmpegConcatArgs({
+      inputs: ['a.mp4', 'b.mp4'],
+      output: 'out.mp4',
+      format: 'mp4' as const,
+      width: 320,
+      fps: 24,
+    });
+    console.log(args);
     expect(args).toStrictEqual(MP4_CONCAT_ARGS);
   });
 
@@ -33,6 +32,7 @@ describe('ffmpeg-concat', () => {
       width: 320,
       fps: 24,
     });
+    console.log(args);
     expect(args).toStrictEqual(WEBM_CONCAT_ARGS);
   });
 });
