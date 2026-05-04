@@ -26,6 +26,7 @@
     "@vue/tsconfig": "^0.9.0",
     "typescript": "catalog:",
     "vite": "^8.0.0",
+    "vite-plugin-webfont-dl": "^3.12.0",
     "vue-tsc": "^3.2.2"
   }
 }
