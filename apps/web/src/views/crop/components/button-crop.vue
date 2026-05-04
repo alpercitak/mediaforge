@@ -1,11 +1,12 @@
 <template>
-  <button @click="onCrop">Crop</button>
+  <Button @click="onCrop">Crop</Button>
 </template>
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { getFFmpegCropArgs } from '@mediaforge/ffmpeg-crop/utils';
 import { getMediaInfo } from '@mediaforge/media/utils';
+import Button from '@/components/ui/button.vue';
 import { useFfmpegRunner } from '@/composables/ffmpeg-runner';
 import { useCropStore } from '../stores/crop';
 

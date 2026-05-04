@@ -1,9 +1,10 @@
 <template>
-  <button @click="onDownload">Download</button>
+  <Button @click="onDownload">Download</Button>
 </template>
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
+import Button from '@/components/ui/button.vue';
 import { useMediaStore } from '@/stores/media';
 
 const { medias } = storeToRefs(useMediaStore());
