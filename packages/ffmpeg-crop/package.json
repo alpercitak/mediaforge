@@ -1,0 +1,39 @@
+{
+  "name": "@mediaforge/ffmpeg-crop",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./types": {
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/types/index.js"
+      }
+    },
+    "./utils": {
+      "import": {
+        "types": "./dist/utils/index.d.ts",
+        "default": "./dist/utils/index.js"
+      }
+    }
+  },
+  "scripts": {
+    "dev": "bunup --watch",
+    "build": "bunup",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "bunup": "catalog:",
+    "@mediaforge/ffmpeg": "workspace:",
+    "@mediaforge/media": "workspace:"
+  },
+  "devDependencies": {
+    "@types/bun": "catalog:",
+    "vitest": "catalog:"
+  },
+  "peerDependencies": {
+    "typescript": "catalog:"
+  }
+}

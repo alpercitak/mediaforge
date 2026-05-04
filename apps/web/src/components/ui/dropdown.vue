@@ -32,7 +32,7 @@ const props = defineProps<{
 select {
   padding: 4px 0;
   border-radius: 6px;
-  border: 1px solid var(--mf-color-primary);
+  border: 1px solid var(--color-accent);
   width: 200px;
 }
 </style>
