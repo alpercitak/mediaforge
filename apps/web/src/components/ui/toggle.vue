@@ -63,8 +63,8 @@ defineProps<{
 }
 /* Keyboard focus */
 .toggle__input:focus-visible + .toggle__track {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+  outline: var(--spacer-xs) solid var(--color-accent);
+  outline-offset: var(--spacer-xs);
 }
 .toggle__label {
   font-size: 0.9rem;

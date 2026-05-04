@@ -10,9 +10,9 @@ useAttrs();
 
 <style scoped>
 .button {
-  border-radius: 8px;
+  border-radius: var(--border-radius-lg);
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: var(--spacer-lg);
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
@@ -23,6 +23,6 @@ useAttrs();
 }
 .button:focus,
 .button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: var(--spacer-xs) solid auto -webkit-focus-ring-color;
 }
 </style>

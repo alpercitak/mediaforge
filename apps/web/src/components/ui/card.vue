@@ -18,12 +18,12 @@ const slots = useSlots();
 
 <style scoped>
 .card {
-  border: 1px solid var(--color-accent);
-  border-radius: 6px;
+  border: var(--border);
+  border-radius: var(--border-radius-md);
   background-color: rgba(255, 255, 255, 0.15);
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 8px;
+  gap: var(--spacer-lg);
+  padding: var(--spacer-lg);
 }
 </style>
