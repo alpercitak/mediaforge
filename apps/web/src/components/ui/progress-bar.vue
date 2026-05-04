@@ -21,7 +21,7 @@ const width = computed<string>(() => `${Math.min(props.value, 100)}%`);
   width: 120px;
   height: 8px;
   background: #eee;
-  border-radius: 12px;
+  border-radius: var(--spacer-lg);
   overflow: hidden;
 }
 .progress-bar__wrapper {

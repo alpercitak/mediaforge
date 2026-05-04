@@ -13,7 +13,7 @@ defineProps<{
 .media-overlay {
   inset: 4px;
   pointer-events: none;
-  border-radius: 8px;
+  border-radius: var(--border-radius-lg);
   transition: all 0.6s;
   background-color: rgba(0, 0, 0, 0.1);
 }

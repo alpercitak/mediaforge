@@ -104,7 +104,7 @@ onBeforeUnmount(stopDrag);
 
 <style scoped>
 .crop-box {
-  border: 1px solid var(--color-accent);
+  border: var(--border);
   cursor: move;
 }
 .crop-box__handle {

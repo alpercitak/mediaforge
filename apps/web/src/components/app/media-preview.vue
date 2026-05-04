@@ -50,6 +50,6 @@ defineExpose({ el });
   width: 100%;
   height: auto;
   object-fit: contain;
-  border-radius: 4px;
+  border-radius: var(--spacer-sm);
 }
 </style>

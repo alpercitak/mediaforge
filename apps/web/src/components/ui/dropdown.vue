@@ -1,7 +1,7 @@
 <template>
   <div class="dropdown">
     <label v-if="label">{{ label }}</label>
-    <select v-model="model">
+    <select class="dropdown__select" v-model="model">
       <option v-for="{ value, text } in options" :key="value" :value="value">
         {{ text }}
       </option>
@@ -27,12 +27,12 @@ const props = defineProps<{
 .dropdown {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--spacer-sm);
 }
-select {
-  padding: 4px 0;
-  border-radius: 6px;
-  border: 1px solid var(--color-accent);
+.dropdown__select {
+  padding: var(--spacer-sm) 0;
+  border-radius: var(--border-radius-md);
+  border: var(--border);
   width: 200px;
 }
 </style>

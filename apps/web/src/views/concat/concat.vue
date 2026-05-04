@@ -14,15 +14,14 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from 'vue';
 import { storeToRefs } from 'pinia';
-import { computed, ref } from 'vue';
 import type { ConcatFormat } from '@mediaforge/ffmpeg-concat/types';
 import ButtonDownload from '@/components/app/button-download.vue';
 import MediaContainer from '@/components/app/media-container.vue';
 import Dropdown from '@/components/ui/dropdown.vue';
 import ProcessLayout from '@/layouts/process-layout/process-layout.vue';
 import { useMediaStore } from '@/stores/media';
-
 import ButtonConcat from './components/button-concat.vue';
 
 const { isInProgress, medias, hasMedias, processedMediasCount } = storeToRefs(useMediaStore());

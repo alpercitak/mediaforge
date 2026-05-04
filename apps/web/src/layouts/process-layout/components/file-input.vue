@@ -16,8 +16,8 @@ const onFileChange = (event: Event): void => {
 
 <style scoped>
 .file-input {
-  border: 1px solid var(--color-accent);
-  padding: 1.75px 2px;
-  border-radius: 6px;
+  border: var(--border);
+  padding: var(--spacer-xs);
+  border-radius: var(--border-radius-md);
 }
 </style>
