@@ -5,12 +5,6 @@
     "dist"
   ],
   "exports": {
-    "./constants": {
-      "import": {
-        "types": "./dist/constants/index.d.ts",
-        "default": "./dist/constants/index.js"
-      }
-    },
     "./types": {
       "import": {
         "types": "./dist/types/index.d.ts",
@@ -32,6 +26,7 @@
   },
   "dependencies": {
     "bunup": "catalog:",
+    "@mediaforge/ffmpeg": "workspace:",
     "@mediaforge/media": "workspace:"
   },
   "devDependencies": {
