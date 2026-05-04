@@ -1,10 +1,16 @@
 {
-  "name": "@mediaforge/ffmpeg-convert",
+  "name": "@mediaforge/ffmpeg",
   "type": "module",
   "files": [
     "dist"
   ],
   "exports": {
+    "./constants": {
+      "import": {
+        "types": "./dist/constants/index.d.ts",
+        "default": "./dist/constants/index.js"
+      }
+    },
     "./types": {
       "import": {
         "types": "./dist/types/index.d.ts",
@@ -20,18 +26,13 @@
   },
   "scripts": {
     "dev": "bunup --watch",
-    "build": "bunup",
-    "test": "vitest run",
-    "test:watch": "vitest"
+    "build": "bunup"
   },
   "dependencies": {
-    "bunup": "catalog:",
-    "@mediaforge/ffmpeg": "workspace:",
-    "@mediaforge/media": "workspace:"
+    "bunup": "catalog:"
   },
   "devDependencies": {
-    "@types/bun": "catalog:",
-    "vitest": "catalog:"
+    "@types/bun": "catalog:"
   },
   "peerDependencies": {
     "typescript": "catalog:"

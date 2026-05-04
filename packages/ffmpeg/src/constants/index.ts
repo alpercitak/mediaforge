@@ -1,6 +1,6 @@
 import type { Quality, QualityOptions } from '../types';
 
-export const QUALITY_SETTINGS = {
+export const QUALITY_OPTION_MAP = {
   default: { width: 320, fps: 24, colors: 256 },
   low: { width: 320, fps: 10, colors: 256 },
   medium: { width: 480, fps: 15, colors: 256 },
