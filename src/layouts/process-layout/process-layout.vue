@@ -25,8 +25,8 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
-import Odometer from '@/components/odometer.vue';
-import ProgressBar from '@/components/progress-bar.vue';
+import Odometer from '@/components/ui/odometer.vue';
+import ProgressBar from '@/components/ui/progress-bar.vue';
 import AppLayout from '@/layouts/app-layout/app-layout.vue';
 import { useFFmpegStore } from '@/stores/ffmpeg';
 import { useMediaStore } from '@/stores/media';

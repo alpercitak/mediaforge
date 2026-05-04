@@ -14,10 +14,10 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { useOptionStore } from '@/stores/option';
+import Card from '@/components/ui/card.vue';
+import Toggle from '@/components/ui/toggle.vue';
 import AppLayout from '@/layouts/app-layout/app-layout.vue';
-import Card from '@/components/card.vue';
-import Toggle from '@/components/toggle.vue';
+import { useOptionStore } from '@/stores/option';
 
 const { option } = storeToRefs(useOptionStore());
 </script>
