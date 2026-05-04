@@ -18,6 +18,7 @@
         "@mediaforge/ffmpeg": "workspace:",
         "@mediaforge/ffmpeg-concat": "workspace:",
         "@mediaforge/ffmpeg-convert": "workspace:",
+        "@mediaforge/ffmpeg-crop": "workspace:",
         "@mediaforge/media": "workspace:",
         "pinia": "^3.0.4",
         "vue": "^3.5.26",
@@ -61,6 +62,21 @@
     },
     "packages/ffmpeg-convert": {
       "name": "@mediaforge/ffmpeg-convert",
+      "dependencies": {
+        "@mediaforge/ffmpeg": "workspace:",
+        "@mediaforge/media": "workspace:",
+        "bunup": "catalog:",
+      },
+      "devDependencies": {
+        "@types/bun": "catalog:",
+        "vitest": "catalog:",
+      },
+      "peerDependencies": {
+        "typescript": "catalog:",
+      },
+    },
+    "packages/ffmpeg-crop": {
+      "name": "@mediaforge/ffmpeg-crop",
       "dependencies": {
         "@mediaforge/ffmpeg": "workspace:",
         "@mediaforge/media": "workspace:",
@@ -135,6 +151,8 @@
     "@mediaforge/ffmpeg-concat": ["@mediaforge/ffmpeg-concat@workspace:packages/ffmpeg-concat"],
 
     "@mediaforge/ffmpeg-convert": ["@mediaforge/ffmpeg-convert@workspace:packages/ffmpeg-convert"],
+
+    "@mediaforge/ffmpeg-crop": ["@mediaforge/ffmpeg-crop@workspace:packages/ffmpeg-crop"],
 
     "@mediaforge/media": ["@mediaforge/media@workspace:packages/media"],
 
