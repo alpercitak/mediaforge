@@ -13,7 +13,7 @@
       "outputs": ["dist/**"],
       "dependsOn": ["^build"]
     },
-    "start": {
+    "preview": {
       "dependsOn": ["^build"]
     }
   }

@@ -12,6 +12,7 @@
     "@ffmpeg/ffmpeg": "^0.12.15",
     "@ffmpeg/util": "^0.12.2",
     "@mediaforge/ffmpeg": "workspace:",
+    "@mediaforge/ffmpeg-concat": "workspace:",
     "@mediaforge/ffmpeg-convert": "workspace:",
     "@mediaforge/media": "workspace:",
     "pinia": "^3.0.4",
