@@ -1,4 +1,4 @@
-import type { MediaExtension, MediaType } from '@/types/media';
+import type { MediaExtension, MediaType } from '@mediaforge/media/types';
 
 export type Media = {
   id: string;

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { reactive, watch } from 'vue';
-import type { Option } from '@/types/app';
+import type { Option } from '@/types';
 
 const STORAGE_KEY = 'mediaforge:options' as const;
 

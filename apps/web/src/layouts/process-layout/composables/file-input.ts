@@ -1,6 +1,6 @@
 import { storeToRefs } from 'pinia';
 import { useMediaStore } from '@/stores/media';
-import type { MediaExtension, MediaType } from '@/types/media';
+import type { MediaExtension, MediaType } from '@mediaforge/media/types';
 
 export const extractExtension = (file: File): MediaExtension => (file.name.split('.').pop() ?? '') as MediaExtension;
 
