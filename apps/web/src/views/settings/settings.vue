@@ -25,7 +25,7 @@ const { option } = storeToRefs(useOptionStore());
 <style scoped>
 .settings__content {
   display: grid;
-  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  grid-template-columns: repeat(1, minmax(200px, 1fr));
   margin-top: 16px;
   gap: 24px;
 }
