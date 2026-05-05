@@ -1,10 +1,10 @@
 # Mediaforge
 
-![Build](https://img.shields.io/github/actions/workflow/status/alpercitak/mediaforge/build.yaml?branch=main&label=Build&color=4ade80&style=flat-square)
-![FFmpeg](https://img.shields.io/badge/FFmpeg-%23425363.svg?style=flat-square&logo=ffmpeg&logoColor=white)
-![Vue](https://img.shields.io/badge/vuejs-4fc08d?style=flat-square&logo=vuedotjs&logoColor=white)
-![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=flat-square&logo=vite&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-4ade80?style=flat-square)
+![Vue](https://img.shields.io/badge/Vue.js-000000?style=flat-square&logo=vuedotjs&logoColor=4FC08D) 
+![Vite](https://img.shields.io/badge/Vite-000000?style=flat-square&logo=vite&logoColor=646CFF)
+![FFmpeg](https://img.shields.io/badge/FFmpeg-000000?style=flat-square&logo=ffmpeg&logoColor=007808)
+![Build](https://img.shields.io/github/actions/workflow/status/alpercitak/mediaforge/build.yaml?style=flat-square&label=&color=2ea44f)
+![License](https://img.shields.io/badge/MIT-2ea44f?style=flat-square)
 
 `mediaforge` is a powerful, browser-based media processing library powered by **FFmpeg.wasm v0.12+**.
 
