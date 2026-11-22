@@ -18,9 +18,14 @@ const onCrop = async (): Promise<void> => {
     return;
   }
 
+  if (media.value.processed) {
+    URL.revokeObjectURL(media.value.processed.src);
+  }
+
   media.value = {
     ...media.value,
     isInProgress: true,
+    processed: undefined,
   };
 
   const { extension, type, mimeType } = getMediaInfo(media.value.original.extension);
