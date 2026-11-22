@@ -1,8 +1,8 @@
 import { defineStore, storeToRefs } from 'pinia';
-import { ref, computed } from 'vue';
-import type { Media } from '@/types';
-import type { Dimension, CoordinateDimension } from '@mediaforge/media/types';
+import { computed, ref } from 'vue';
+import type { CoordinateDimension, Dimension } from '@mediaforge/media/types';
 import { useMediaStore } from '@/stores/media';
+import type { Media } from '@/types';
 
 export const useCropStore = defineStore('crop', () => {
   const { medias } = storeToRefs(useMediaStore());

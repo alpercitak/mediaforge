@@ -7,15 +7,15 @@
     @loadedmetadata="emitReady"
     class="media-preview"
   />
-  <img v-else ref="el" :src="mediaItem.src ?? BLANK_IMAGE" @load="emitReady" class="media-preview" />
+  <img v-else ref="el" :src="mediaItem.src ?? BLANK_IMAGE" alt="" @load="emitReady" class="media-preview" />
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
 import { storeToRefs } from 'pinia';
+import { computed, ref } from 'vue';
 import type { Dimension } from '@mediaforge/media/types';
-import type { MediaItem } from '@/types';
 import { useOptionStore } from '@/stores/option';
+import type { MediaItem } from '@/types';
 
 const BLANK_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' as const;
 
@@ -25,9 +25,7 @@ const props = defineProps<{
   mediaItem: MediaItem;
 }>();
 
-const emit = defineEmits<{
-  (e: 'ready', p: Dimension): void;
-}>();
+const emit = defineEmits<(e: 'ready', p: Dimension) => void>();
 
 const el = ref<HTMLVideoElement | HTMLImageElement | null>(null);
 

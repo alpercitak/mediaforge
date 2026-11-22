@@ -5,8 +5,8 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import type { Dimension } from '@mediaforge/media/types';
-import { useCropStore } from '@/views/crop/stores/crop';
 import MediaPreview from '@/components/app/media-preview.vue';
+import { useCropStore } from '@/views/crop/stores/crop';
 
 const HEIGHT = 400 as const;
 

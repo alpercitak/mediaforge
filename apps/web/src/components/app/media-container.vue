@@ -12,12 +12,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
+import { computed } from 'vue';
+import MediaPreview from '@/components/app/media-preview.vue';
+import Card from '@/components/ui/card.vue';
 import { useOptionStore } from '@/stores/option';
 import type { Media } from '@/types';
-import Card from '@/components/ui/card.vue';
-import MediaPreview from '@/components/app/media-preview.vue';
 import MediaOverlay from './media-overlay.vue';
 
 const { option } = storeToRefs(useOptionStore());

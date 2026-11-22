@@ -14,8 +14,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
 import { storeToRefs } from 'pinia';
+import { computed, ref } from 'vue';
 import type { ConcatFormat } from '@mediaforge/ffmpeg-concat/types';
 import ButtonDownload from '@/components/app/button-download.vue';
 import MediaContainer from '@/components/app/media-container.vue';

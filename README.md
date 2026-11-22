@@ -1,6 +1,6 @@
 # Mediaforge
 
-![Vue](https://img.shields.io/badge/Vue.js-000000?style=flat-square&logo=vuedotjs&logoColor=4FC08D) 
+![Vue](https://img.shields.io/badge/Vue.js-000000?style=flat-square&logo=vuedotjs&logoColor=4FC08D)
 ![Vite](https://img.shields.io/badge/Vite-000000?style=flat-square&logo=vite&logoColor=646CFF)
 ![FFmpeg](https://img.shields.io/badge/FFmpeg-000000?style=flat-square&logo=ffmpeg&logoColor=007808)
 ![Build](https://img.shields.io/github/actions/workflow/status/alpercitak/mediaforge/build.yaml?style=flat-square&label=&color=2ea44f)
@@ -22,5 +22,5 @@ bun run dev
 ---
 
 ### License
- 
+
 MIT

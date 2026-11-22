@@ -1,6 +1,6 @@
-import { ref, computed } from 'vue';
-import { defineStore } from 'pinia';
 import type { FFmpeg as FFmpegType } from '@ffmpeg/ffmpeg';
+import { defineStore } from 'pinia';
+import { computed, ref } from 'vue';
 
 let fetchFileFn: typeof import('@ffmpeg/util').fetchFile | null = null;
 

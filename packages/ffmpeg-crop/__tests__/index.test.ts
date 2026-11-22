@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { getFFmpegCropArgs } from '../src/utils';
-import { VIDEO_ARGS, IMAGE_ARGS } from './fixtures/ffmpeg-args';
+import { IMAGE_ARGS, VIDEO_ARGS } from './fixtures/ffmpeg-args';
 
 const BASE_OPTIONS = {
   crop: { x: 20, y: 40, width: 400, height: 320 },

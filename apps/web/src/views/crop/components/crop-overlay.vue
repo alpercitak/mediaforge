@@ -8,8 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
+import { computed } from 'vue';
 import { useCropStore } from '@/views/crop/stores/crop';
 import type { ElementStyle } from '@/views/crop/types';
 

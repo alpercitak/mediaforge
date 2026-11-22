@@ -4,9 +4,9 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
+import { QUALITY_OPTION_MAP } from '@mediaforge/ffmpeg/constants';
 import type { ConcatFormat } from '@mediaforge/ffmpeg-concat/types';
 import { getFFmpegConcatArgs } from '@mediaforge/ffmpeg-concat/utils';
-import { QUALITY_OPTION_MAP } from '@mediaforge/ffmpeg/constants';
 import type { MediaType } from '@mediaforge/media/types';
 import { getMediaInfo } from '@mediaforge/media/utils';
 import Button from '@/components/ui/button.vue';

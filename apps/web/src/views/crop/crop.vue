@@ -20,8 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
+import { computed } from 'vue';
 import ButtonDownload from '@/components/app/button-download.vue';
 import MediaPreview from '@/components/app/media-preview.vue';
 import ProcessLayout from '@/layouts/process-layout/process-layout.vue';
@@ -30,7 +30,6 @@ import ButtonCrop from './components/button-crop.vue';
 import CropBox from './components/crop-box.vue';
 import CropOverlay from './components/crop-overlay.vue';
 import MediaOriginal from './components/media-original.vue';
-
 import { useCropStore } from './stores/crop';
 
 const { isInProgress, processedMediasCount } = storeToRefs(useMediaStore());

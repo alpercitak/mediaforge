@@ -1,7 +1,7 @@
+import { resolve } from 'node:path';
+import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import webfontDownload from 'vite-plugin-webfont-dl';
-import vue from '@vitejs/plugin-vue';
-import { resolve } from 'path';
 
 const INTER_FONT_URL = 'https://fonts.googleapis.com/css2?family=Inter:wght@400..600&display=swap' as const;
 
