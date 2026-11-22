@@ -17,8 +17,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
 
       - uses: oven-sh/setup-bun@v2
         with:
@@ -30,4 +28,4 @@ jobs:
 
       - uses: alpercitak/fasttrack@v0
         with:
-          args: --test --build --affected --verbose
+          args: --test --build --verbose
