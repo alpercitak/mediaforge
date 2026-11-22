@@ -1,7 +1,7 @@
 <template>
   <div class="dropdown">
-    <label v-if="label">{{ label }}</label>
-    <select class="dropdown__select" v-model="model">
+    <label v-if="label" :for="id">{{ label }}</label>
+    <select :id="id" class="dropdown__select" v-model="model">
       <option v-for="{ value, text } in options" :key="value" :value="value">
         {{ text }}
       </option>
@@ -10,6 +10,8 @@
 </template>
 
 <script setup lang="ts">
+import { useId } from 'vue';
+
 const model = defineModel<string>();
 
 interface Option {
@@ -21,6 +23,8 @@ const props = defineProps<{
   options: Array<Option>;
   label?: string;
 }>();
+
+const id = useId();
 </script>
 
 <style scoped>

@@ -1,5 +1,7 @@
 <template>
+  <!-- biome-ignore lint/a11y/noStaticElementInteractions: mouse-only crop box; touch support is tracked in docs/TODO.md -->
   <div class="crop-box" :style="computedStyle" @mousedown.stop.prevent="startDrag('move', $event)">
+    <!-- biome-ignore lint/a11y/noStaticElementInteractions: mouse-only resize handles -->
     <span
       v-for="dir in DIRECTIONS"
       :key="dir"
@@ -11,8 +13,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount } from 'vue';
 import { storeToRefs } from 'pinia';
+import { computed, onBeforeUnmount } from 'vue';
 import { useCropStore } from '@/views/crop/stores/crop';
 import type { DragMode, ElementStyle } from '@/views/crop/types';
 

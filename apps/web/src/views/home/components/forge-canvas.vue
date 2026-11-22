@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, ref, watch } from 'vue';
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { useFFmpegStore } from '@/stores/ffmpeg';
 
 interface Spark {
@@ -98,8 +98,10 @@ const animate = (): void => {
     return;
   }
 
-  const width = (canvasRef.value.width = window.innerWidth);
-  const height = (canvasRef.value.height = window.innerHeight);
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  canvasRef.value.width = width;
+  canvasRef.value.height = height;
 
   update(width, height);
   draw(width, height);
