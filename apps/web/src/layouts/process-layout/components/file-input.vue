@@ -1,5 +1,5 @@
 <template>
-  <input type="file" multiple @change="onFileChange" class="file-input" />
+  <input type="file" accept="image/*,video/*" multiple @change="onFileChange" class="file-input" />
 </template>
 
 <script setup lang="ts">

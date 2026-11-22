@@ -2,8 +2,7 @@
 
 ## Bugs
 
-- Crop to mp4 fails on odd dimensions: round `scaledCrop` down to even numbers (`apps/web/src/views/crop/stores/crop.ts`); convert uses `scale=W:-1`, use `-2` for mp4/webm (`packages/ffmpeg-convert`; latent until Convert offers mp4/webm).
-- Crop breaks on uppercase or unknown extensions (`IMG.JPG`, `.jpeg`, `.mov`): normalize and validate the extension in `layouts/process-layout/composables/file-input.ts`.
+- Convert uses `scale=W:-1`; use `-2` for mp4/webm to avoid odd heights (`packages/ffmpeg-convert`; latent until Convert offers mp4/webm).
 - Concat drops audio (`a=0`) and always outputs 320×180.
 - ffmpeg core loads from unpkg at runtime (`src/stores/ffmpeg.ts`); self-host it. Load failures are only logged: status stays ⏳, no retry or user-facing error.
 
