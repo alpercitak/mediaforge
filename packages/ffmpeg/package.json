@@ -28,10 +28,8 @@
     "dev": "bunup --watch",
     "build": "bunup"
   },
-  "dependencies": {
-    "bunup": "catalog:"
-  },
   "devDependencies": {
+    "bunup": "catalog:",
     "@types/bun": "catalog:"
   },
   "peerDependencies": {
