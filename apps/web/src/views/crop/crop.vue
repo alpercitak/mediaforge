@@ -11,6 +11,7 @@
       <div class="media-wrapper__container" v-if="media?.processed">
         <media-preview :media-item="media.processed" class="media-wrapper__media" />
       </div>
+      <p v-else-if="media?.failed" class="media-wrapper__failed">Crop failed, try again</p>
     </div>
     <template #footer>
       <button-crop v-if="canCrop" />
@@ -54,6 +55,10 @@ const canDownload = computed<boolean>(() => !!processedMediasCount.value && !isI
 }
 .media-wrapper__media {
   height: 400px;
+}
+.media-wrapper__failed {
+  align-self: center;
+  color: var(--color-error);
 }
 .media-wrapper__crop-box {
   position: absolute;

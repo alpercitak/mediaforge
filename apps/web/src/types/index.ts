@@ -6,6 +6,7 @@ export type Media = {
   original: MediaItem;
   processed?: MediaItem;
   isInProgress?: boolean;
+  failed?: boolean;
 };
 
 export type Medias = Array<Media>;

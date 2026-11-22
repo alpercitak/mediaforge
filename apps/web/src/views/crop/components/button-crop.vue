@@ -26,6 +26,7 @@ const onCrop = async (): Promise<void> => {
     ...media.value,
     isInProgress: true,
     processed: undefined,
+    failed: false,
   };
 
   const { extension, type, mimeType } = getMediaInfo(media.value.original.extension);
@@ -55,6 +56,7 @@ const onCrop = async (): Promise<void> => {
       ...media.value,
       isInProgress: false,
       processed: undefined,
+      failed: true,
     };
   }
 };

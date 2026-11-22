@@ -2,6 +2,7 @@
   <card class="media-container">
     <template #header>
       {{ media.file.type }}
+      <span v-if="media.failed" class="media-container__failed">· failed, try again</span>
     </template>
     <div class="media-container__content">
       <media-preview :media-item="media.original" />
@@ -39,6 +40,9 @@ const shouldBlur = computed<boolean>(() => (shouldHighlight.value ? !props.media
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
   overflow: hidden;
+}
+.media-container__failed {
+  color: var(--color-error);
 }
 .media-container__overlay {
   position: absolute;

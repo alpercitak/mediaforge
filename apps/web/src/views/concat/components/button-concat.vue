@@ -31,6 +31,7 @@ const onConcat = async (): Promise<void> => {
   concatTargets.forEach((item) => {
     item.isInProgress = true;
     item.processed = undefined;
+    item.failed = false;
   });
 
   const { extension, type, mimeType } = getMediaInfo(props.format);
@@ -72,6 +73,9 @@ const onConcat = async (): Promise<void> => {
     }
   } catch (error) {
     console.error('Concat failed:', error);
+    concatTargets.forEach((item) => {
+      item.failed = true;
+    });
   } finally {
     concatTargets.forEach((item) => {
       item.isInProgress = false;

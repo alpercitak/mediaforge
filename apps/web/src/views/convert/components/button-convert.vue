@@ -31,6 +31,7 @@ const onConvert = async (): Promise<void> => {
     }
 
     item.isInProgress = true;
+    item.failed = false;
 
     const { type, extension, mimeType } = getMediaInfo(props.format);
 
@@ -56,6 +57,7 @@ const onConvert = async (): Promise<void> => {
     } catch (error) {
       console.error('Convert failed:', error);
       item.processed = undefined;
+      item.failed = true;
     }
 
     item.isInProgress = false;
