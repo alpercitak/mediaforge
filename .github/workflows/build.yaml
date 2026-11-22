@@ -18,7 +18,6 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          persist-credentials: true
           fetch-depth: 0
 
       - uses: oven-sh/setup-bun@v2
@@ -27,6 +26,8 @@ jobs:
 
       - run: bun install
 
+      - run: bun run check
+
       - uses: alpercitak/fasttrack@v0
         with:
-          args: --build --affected --verbose
+          args: --test --build --affected --verbose
