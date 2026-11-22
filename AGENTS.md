@@ -21,7 +21,7 @@ Bun/Turborepo monorepo for a browser-only media tool built on ffmpeg.wasm. The V
 - Packages expose `./types` and `./utils` subpath exports built by bunup; `@mediaforge/ffmpeg` also exposes `./constants`. To add an entry, list it in `bunup.config.ts`, build, and commit the regenerated `package.json` `exports`.
 - `ffmpeg-*` packages are pure functions returning `Array<string>` ffmpeg args via `ffmpegArg`; they never import ffmpeg.wasm.
 - Quality presets live in `@mediaforge/ffmpeg/constants`. Format, MIME and media-type maps live in `packages/media/src/constants` and are consumed via `@mediaforge/media/utils` (`getMediaInfo`). Keep encoder tuning values in packages, not in components.
-- Only `ffmpeg-concat`, `ffmpeg-convert` and `ffmpeg-crop` have tests (vitest): `__tests__/index.test.ts`, with expected args in `__tests__/fixtures/ffmpeg-args.ts`. Tests import sibling packages from `dist`, so run `bun run build` before `bun run test`; single package: `bun run --filter @mediaforge/ffmpeg-crop test`.
+- `ffmpeg-concat`, `ffmpeg-convert` and `ffmpeg-crop` have tests (vitest): `__tests__/index.test.ts`, with expected args in `__tests__/fixtures/ffmpeg-args.ts`. `apps/web/__tests__/` unit-tests pure app logic; export pure helpers from composables to test them. Tests import sibling packages from `dist`, so run `bun run build` before `bun run test`; single package: `bun run --filter @mediaforge/ffmpeg-crop test`.
 
 ## Biome
 

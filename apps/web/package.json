@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run"
   },
   "dependencies": {
     "@ffmpeg/ffmpeg": "^0.12.15",
@@ -27,6 +28,7 @@
     "typescript": "catalog:",
     "vite": "^8.3.8",
     "vite-plugin-webfont-dl": "^3.14.1",
+    "vitest": "catalog:",
     "vue-tsc": "^3.3.14"
   }
 }

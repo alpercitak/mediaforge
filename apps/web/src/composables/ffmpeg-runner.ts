@@ -31,6 +31,21 @@ type FfmpegRunOptions = {
   buildArgs: (io: FfmpegIo) => Array<string> | Promise<Array<string>>;
 };
 
+export const parseProbe = (text: string, name: string): MediaProbe => {
+  const { streams = [], format }: ProbeOutput = text ? JSON.parse(text) : {};
+  const video = streams.find(({ codec_type }) => codec_type === 'video');
+  const duration = Number(format?.duration);
+  if (!video?.width || !video.height || !(duration > 0)) {
+    throw new Error(`FFprobe could not read ${name}.`);
+  }
+  return {
+    width: video.width,
+    height: video.height,
+    duration,
+    hasAudio: streams.some(({ codec_type }) => codec_type === 'audio'),
+  };
+};
+
 export const useFfmpegRunner = () => {
   const { getFFmpeg, resetProgress } = useFFmpegStore();
 
@@ -46,18 +61,7 @@ export const useFfmpegRunner = () => {
           ...['-of', 'json', name, '-o', output],
         ]);
         const text = await ffmpeg.readFile(output, 'utf8');
-        const { streams = [], format }: ProbeOutput = JSON.parse(typeof text === 'string' ? text : '{}');
-        const video = streams.find(({ codec_type }) => codec_type === 'video');
-        const duration = Number(format?.duration);
-        if (!video?.width || !video.height || !(duration > 0)) {
-          throw new Error(`FFprobe could not read ${name}.`);
-        }
-        return {
-          width: video.width,
-          height: video.height,
-          duration,
-          hasAudio: streams.some(({ codec_type }) => codec_type === 'audio'),
-        };
+        return parseProbe(typeof text === 'string' ? text : '', name);
       } finally {
         await ffmpeg.deleteFile(output).catch(() => {});
       }
