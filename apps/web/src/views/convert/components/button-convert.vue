@@ -6,8 +6,8 @@
 import { storeToRefs } from 'pinia';
 import { QUALITY_OPTION_MAP } from '@mediaforge/ffmpeg/constants';
 import type { Quality } from '@mediaforge/ffmpeg/types';
+import type { ConvertFormat } from '@mediaforge/ffmpeg-convert/types';
 import { getFFmpegConvertArgs } from '@mediaforge/ffmpeg-convert/utils';
-import type { MediaFormat } from '@mediaforge/media/types';
 import { getMediaInfo } from '@mediaforge/media/utils';
 import Button from '@/components/ui/button.vue';
 import { useFfmpegRunner } from '@/composables/ffmpeg-runner';
@@ -17,7 +17,7 @@ const { medias } = storeToRefs(useMediaStore());
 const { runFfmpeg } = useFfmpegRunner();
 
 const props = defineProps<{
-  format: MediaFormat;
+  format: ConvertFormat;
   quality: Quality;
 }>();
 

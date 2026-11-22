@@ -1,3 +1,5 @@
+import type { Quality } from '@mediaforge/ffmpeg/types';
+import type { ConvertFormat } from '@mediaforge/ffmpeg-convert/types';
 import type { MediaExtension, MediaType } from '@mediaforge/media/types';
 
 export type Media = {
@@ -23,4 +25,6 @@ export type Option = {
   loop: boolean;
   muted: boolean;
   blur: boolean;
+  convertFormat: ConvertFormat;
+  convertQuality: Quality;
 };
