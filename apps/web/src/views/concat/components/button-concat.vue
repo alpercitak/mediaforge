@@ -42,13 +42,25 @@ const onConcat = async (): Promise<void> => {
         inputs: concatTargets.map((item) => ({ id: item.id, file: item.file, extension: item.original.extension })),
         output,
         mimeType,
-        buildArgs: ({ inputs, output: outputName }) =>
-          getFFmpegConcatArgs({
-            inputs,
+        buildArgs: async ({ inputs, output: outputName, probe }) => {
+          const probed = [];
+          for (const name of inputs) {
+            probed.push({ name, ...(await probe(name)) });
+          }
+          const [first] = probed;
+          if (!first) {
+            return [];
+          }
+          // Output matches the first clip's size; the others are scaled and padded into it.
+          return getFFmpegConcatArgs({
+            inputs: probed,
             output: outputName,
             format: props.format,
-            ...QUALITY_OPTION_MAP.default,
-          }),
+            width: first.width,
+            height: first.height,
+            fps: QUALITY_OPTION_MAP.default.fps,
+          });
+        },
       }),
       extension,
       type,

@@ -2,7 +2,6 @@
 
 ## Bugs
 
-- Concat drops audio (`a=0`) and always outputs 320×180.
 
 ## Improvements
 
