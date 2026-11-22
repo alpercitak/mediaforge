@@ -20,7 +20,6 @@ describe('ffmpeg-concat', () => {
       width: 320,
       fps: 24,
     });
-    console.log(args);
     expect(args).toStrictEqual(MP4_CONCAT_ARGS);
   });
 
@@ -32,7 +31,6 @@ describe('ffmpeg-concat', () => {
       width: 320,
       fps: 24,
     });
-    console.log(args);
     expect(args).toStrictEqual(WEBM_CONCAT_ARGS);
   });
 });
