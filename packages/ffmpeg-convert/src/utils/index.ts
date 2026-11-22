@@ -1,6 +1,7 @@
 import { ffmpegArg } from '@mediaforge/ffmpeg/utils';
-import type { MediaFormat } from '@mediaforge/media/types';
-import type { ConvertOptions } from '../types';
+import type { ConvertFormat, ConvertOptions } from '../types';
+
+export const CONVERT_FORMATS: ReadonlyArray<ConvertFormat> = ['gif', 'webp', 'apng', 'mp4', 'webm'];
 
 // Presets cap the width; smaller sources keep their own width instead of being upscaled.
 const baseFilter = ({ fps, width }: ConvertOptions): string =>
@@ -51,7 +52,7 @@ const webpArgs = (o: ConvertOptions): Array<string> => [
   ...ffmpegArg('-q:v', '80'),
 ];
 
-const FORMAT_ARGS: Partial<Record<MediaFormat, (o: ConvertOptions) => Array<string>>> = {
+const FORMAT_ARGS: Record<ConvertFormat, (o: ConvertOptions) => Array<string>> = {
   apng: apngArgs,
   gif: gifArgs,
   mp4: mp4Args,
@@ -59,12 +60,7 @@ const FORMAT_ARGS: Partial<Record<MediaFormat, (o: ConvertOptions) => Array<stri
   webp: webpArgs,
 };
 
-export const getFFmpegConvertArgs = (format: MediaFormat, options: ConvertOptions): Array<string> => {
-  const formatArgs = FORMAT_ARGS[format];
-  if (!formatArgs) {
-    return [];
-  }
-
+export const getFFmpegConvertArgs = (format: ConvertFormat, options: ConvertOptions): Array<string> => {
   const args: Array<string> = [];
 
   if (options.startTime && options.startTime > 0) {
@@ -77,7 +73,7 @@ export const getFFmpegConvertArgs = (format: MediaFormat, options: ConvertOption
     args.push(...ffmpegArg('-t', String(options.duration)));
   }
 
-  args.push(...formatArgs(options));
+  args.push(...FORMAT_ARGS[format](options));
 
   args.push(options.output);
 
