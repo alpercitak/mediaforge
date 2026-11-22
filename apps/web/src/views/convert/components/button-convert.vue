@@ -5,6 +5,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { QUALITY_OPTION_MAP } from '@mediaforge/ffmpeg/constants';
+import type { Quality } from '@mediaforge/ffmpeg/types';
 import { getFFmpegConvertArgs } from '@mediaforge/ffmpeg-convert/utils';
 import type { MediaFormat } from '@mediaforge/media/types';
 import { getMediaInfo } from '@mediaforge/media/utils';
@@ -17,6 +18,7 @@ const { runFfmpeg } = useFfmpegRunner();
 
 const props = defineProps<{
   format: MediaFormat;
+  quality: Quality;
 }>();
 
 const onConvert = async (): Promise<void> => {
@@ -48,7 +50,7 @@ const onConvert = async (): Promise<void> => {
             getFFmpegConvertArgs(props.format, {
               input: inputs[0] ?? input,
               output: outputName,
-              ...QUALITY_OPTION_MAP.default,
+              ...QUALITY_OPTION_MAP[props.quality],
             }),
         }),
         extension,
