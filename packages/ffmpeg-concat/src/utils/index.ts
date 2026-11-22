@@ -1,35 +1,39 @@
 import { ffmpegArg } from '@mediaforge/ffmpeg/utils';
-import type { ConcatFormat, ConcatOptions } from '../types';
+import type { ConcatFormat, ConcatInput, ConcatOptions } from '../types';
 
-const makeEven = (num: number) => (num % 2 === 0 ? num : num - 1);
+const SAMPLE_RATE = 48000;
 
-const buildInputFilters = (count: number, fps?: number, width?: number, height?: number): string => {
-  const targetW = width ? makeEven(width) : 1280;
-  const targetH = height ? makeEven(height) : makeEven(Math.round(targetW * (9 / 16)));
+const makeEven = (num: number): number => num - (num % 2);
 
-  const inputFilters = Array.from({ length: count }, (_, i) => {
-    const label = `[v${i}]`;
-    const source = `[${i}:v]`;
-
-    const filterChain = [];
-
-    if (fps) {
-      filterChain.push(`fps=${fps}`);
-    }
-
-    filterChain.push(
-      `scale=${targetW}:${targetH}:force_original_aspect_ratio=decrease`,
-      `pad=${targetW}:${targetH}:(ow-iw)/2:(oh-ih)/2`,
-      `setsar=1`,
-    );
-
-    return `${source}${filterChain.join(',')}${label}`;
-  });
-
-  return inputFilters.join(';');
+const videoFilter = (index: number, width: number, height: number, fps?: number): string => {
+  const chain = fps ? [`fps=${fps}`] : [];
+  chain.push(
+    `scale=${width}:${height}:force_original_aspect_ratio=decrease`,
+    `pad=${width}:${height}:(ow-iw)/2:(oh-ih)/2`,
+    'setsar=1',
+  );
+  return `[${index}:v]${chain.join(',')}[v${index}]`;
 };
 
-const formatArgs = (format: ConcatFormat): Array<string> => {
+// Every segment needs audio of its own length for concat: real audio is normalized and padded/trimmed, silent clips get silence.
+const audioFilter = ({ duration, hasAudio }: ConcatInput, index: number): string =>
+  hasAudio
+    ? `[${index}:a]aresample=${SAMPLE_RATE},aformat=sample_fmts=fltp:channel_layouts=stereo,apad,atrim=duration=${duration}[a${index}]`
+    : `anullsrc=r=${SAMPLE_RATE}:cl=stereo,atrim=duration=${duration}[a${index}]`;
+
+const concatFilter = ({ inputs, width, height, fps }: ConcatOptions, withAudio: boolean): string => {
+  const filters = inputs.map((_, i) => videoFilter(i, makeEven(width), makeEven(height), fps));
+  if (withAudio) {
+    filters.push(...inputs.map(audioFilter));
+  }
+
+  const streams = inputs.map((_, i) => (withAudio ? `[v${i}][a${i}]` : `[v${i}]`)).join('');
+  filters.push(`${streams}concat=n=${inputs.length}:v=1:a=${withAudio ? 1 : 0}[v]${withAudio ? '[a]' : ''}`);
+
+  return filters.join(';');
+};
+
+const formatArgs = (format: ConcatFormat, withAudio: boolean): Array<string> => {
   if (format === 'webm') {
     return [
       // libvpx-vp9 crashes ffmpeg.wasm 0.12 (memory access out of bounds), so webm uses VP8.
@@ -39,6 +43,8 @@ const formatArgs = (format: ConcatFormat): Array<string> => {
       ...ffmpegArg('-b:v', '1M'),
       ...ffmpegArg('-deadline', 'good'),
       ...ffmpegArg('-cpu-used', '4'),
+      // libopus crashes ffmpeg.wasm 0.12 in the concat graph, so webm audio uses Vorbis.
+      ...(withAudio ? [...ffmpegArg('-c:a', 'libvorbis'), ...ffmpegArg('-q:a', '4')] : []),
     ];
   }
 
@@ -47,21 +53,9 @@ const formatArgs = (format: ConcatFormat): Array<string> => {
     ...ffmpegArg('-preset', 'ultrafast'),
     ...ffmpegArg('-crf', '28'),
     ...ffmpegArg('-pix_fmt', 'yuv420p'),
+    ...(withAudio ? [...ffmpegArg('-c:a', 'aac'), ...ffmpegArg('-b:a', '128k')] : []),
     ...ffmpegArg('-movflags', '+faststart'),
   ];
-};
-
-const concatFilter = (count: number, fps?: number, width?: number): string => {
-  const hasNormalize = Boolean(fps || width);
-  if (!hasNormalize) {
-    const streams = Array.from({ length: count }, (_, i) => `[${i}:v:0]`).join('');
-    return `${streams}concat=n=${count}:v=1:a=0[v]`;
-  }
-
-  const inputFilters = buildInputFilters(count, fps, width);
-
-  const concatInputs = Array.from({ length: count }, (_, i) => `[v${i}]`).join('');
-  return `${inputFilters};${concatInputs}concat=n=${count}:v=1:a=0[v]`;
 };
 
 export const getFFmpegConcatArgs = (options: ConcatOptions): Array<string> => {
@@ -71,13 +65,18 @@ export const getFFmpegConcatArgs = (options: ConcatOptions): Array<string> => {
     return args;
   }
 
-  for (const input of options.inputs) {
-    args.push(...ffmpegArg('-i', input));
+  const withAudio = options.inputs.some(({ hasAudio }) => hasAudio);
+
+  for (const { name } of options.inputs) {
+    args.push(...ffmpegArg('-i', name));
   }
 
-  args.push(...ffmpegArg('-filter_complex', concatFilter(options.inputs.length, options.fps, options.width)));
+  args.push(...ffmpegArg('-filter_complex', concatFilter(options, withAudio)));
   args.push(...ffmpegArg('-map', '[v]'));
-  args.push(...formatArgs(options.format));
+  if (withAudio) {
+    args.push(...ffmpegArg('-map', '[a]'));
+  }
+  args.push(...formatArgs(options.format, withAudio));
   args.push(options.output);
 
   return args;
