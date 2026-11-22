@@ -31,10 +31,11 @@ const mp4Args = (o: ConvertOptions): Array<string> => [
 
 const webmArgs = (o: ConvertOptions): Array<string> => [
   ...ffmpegArg('-vf', baseFilter(o)),
-  ...ffmpegArg('-c:v', 'libvpx-vp9'),
+  // libvpx-vp9 crashes ffmpeg.wasm 0.12 (memory access out of bounds), so webm uses VP8.
+  ...ffmpegArg('-c:v', 'libvpx'),
   ...ffmpegArg('-pix_fmt', 'yuv420p'),
-  ...ffmpegArg('-crf', '32'),
-  ...ffmpegArg('-b:v', '0'),
+  ...ffmpegArg('-crf', '10'),
+  ...ffmpegArg('-b:v', '1M'),
   ...ffmpegArg('-deadline', 'good'),
   ...ffmpegArg('-cpu-used', '4'),
 ];
