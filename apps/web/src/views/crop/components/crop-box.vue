@@ -1,13 +1,11 @@
 <template>
-  <!-- biome-ignore lint/a11y/noStaticElementInteractions: mouse-only crop box; touch support is tracked in docs/TODO.md -->
-  <div class="crop-box" :style="computedStyle" @mousedown.stop.prevent="startDrag('move', $event)">
-    <!-- biome-ignore lint/a11y/noStaticElementInteractions: mouse-only resize handles -->
+  <div class="crop-box" :style="computedStyle" @pointerdown.stop.prevent="startDrag('move', $event)">
     <span
       v-for="dir in DIRECTIONS"
       :key="dir"
       :data-dir="dir"
       class="crop-box__handle"
-      @mousedown.stop.prevent="startDrag(dir, $event)"
+      @pointerdown.stop.prevent="startDrag(dir, $event)"
     ></span>
   </div>
 </template>
@@ -35,7 +33,7 @@ const computedStyle = computed<ElementStyle>(() => ({
   height: `${cropDimensions.value.height}px`,
 }));
 
-const onDrag = ({ clientX, clientY }: MouseEvent): void => {
+const onDrag = ({ clientX, clientY }: PointerEvent): void => {
   if (!dragMode) {
     return;
   }
@@ -84,11 +82,12 @@ const onDrag = ({ clientX, clientY }: MouseEvent): void => {
 
 const stopDrag = (): void => {
   dragMode = null;
-  window.removeEventListener('mousemove', onDrag);
-  window.removeEventListener('mouseup', stopDrag);
+  window.removeEventListener('pointermove', onDrag);
+  window.removeEventListener('pointerup', stopDrag);
+  window.removeEventListener('pointercancel', stopDrag);
 };
 
-const startDrag = (mode: DragMode, e: MouseEvent): void => {
+const startDrag = (mode: DragMode, e: PointerEvent): void => {
   dragMode = mode;
   DRAG_START.mouseX = e.clientX;
   DRAG_START.mouseY = e.clientY;
@@ -97,8 +96,9 @@ const startDrag = (mode: DragMode, e: MouseEvent): void => {
   DRAG_START.rectW = cropDimensions.value.width;
   DRAG_START.rectH = cropDimensions.value.height;
 
-  window.addEventListener('mousemove', onDrag);
-  window.addEventListener('mouseup', stopDrag);
+  window.addEventListener('pointermove', onDrag);
+  window.addEventListener('pointerup', stopDrag);
+  window.addEventListener('pointercancel', stopDrag);
 };
 
 onBeforeUnmount(stopDrag);
@@ -108,6 +108,7 @@ onBeforeUnmount(stopDrag);
 .crop-box {
   border: var(--border);
   cursor: move;
+  touch-action: none;
 }
 .crop-box__handle {
   --offset: -6px;
