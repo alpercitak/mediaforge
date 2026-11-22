@@ -37,18 +37,23 @@ export const useFFmpegStore = defineStore('ffmpeg', () => {
 
     throw lastError;
   };
-  const getFFmpegInstance = async () => {
+  let loading: Promise<FFmpegType> | null = null;
+
+  const getFFmpegInstance = (): Promise<FFmpegType> => {
     progressValue.value = 0;
-    if (!ffmpegInstance.value) {
-      try {
-        ffmpegInstance.value = await loadFFmpeg();
+    loading ??= loadFFmpeg().then(
+      (ffmpeg) => {
+        ffmpegInstance.value = ffmpeg;
         ffmpegFailed.value = false;
-      } catch (error) {
+        return ffmpeg;
+      },
+      (error: unknown) => {
+        loading = null;
         ffmpegFailed.value = true;
         throw error;
-      }
-    }
-    return ffmpegInstance.value;
+      },
+    );
+    return loading;
   };
   const getFFmpegFetchFile = async () => {
     if (!fetchFileFn) {
