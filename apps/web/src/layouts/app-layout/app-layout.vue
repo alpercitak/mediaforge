@@ -48,8 +48,8 @@ const routes = computed(() => router.getRoutes());
 .app-layout__navigation a:visited {
   color: inherit;
 }
-:deep(.link-active) {
-  color: var(--color-accent) !important;
+.app-layout__navigation a.link-active {
+  color: var(--color-accent);
 }
 .app-layout__main {
   display: flex;
