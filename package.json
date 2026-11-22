@@ -5,10 +5,11 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "test": "turbo test"
+    "test": "turbo test",
+    "check": "biome check"
   },
   "devDependencies": {
-    "prettier": "^3.9.4",
+    "@biomejs/biome": "2.6.8",
     "turbo": "^2.10.4"
   },
   "workspaces": {
