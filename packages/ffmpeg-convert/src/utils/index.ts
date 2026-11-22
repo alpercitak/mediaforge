@@ -2,7 +2,9 @@ import { ffmpegArg } from '@mediaforge/ffmpeg/utils';
 import type { MediaFormat } from '@mediaforge/media/types';
 import type { ConvertOptions } from '../types';
 
-const baseFilter = ({ fps, width }: ConvertOptions): string => `fps=${fps},scale=${width}:-2:flags=lanczos`;
+// Presets cap the width; smaller sources keep their own width instead of being upscaled.
+const baseFilter = ({ fps, width }: ConvertOptions): string =>
+  `fps=${fps},scale=w=min(${width}\\,iw):h=-2:flags=lanczos`;
 
 const apngArgs = (o: ConvertOptions): Array<string> => [
   ...ffmpegArg('-vf', baseFilter(o)),
