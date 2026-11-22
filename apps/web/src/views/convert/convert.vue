@@ -34,6 +34,9 @@ const canDownload = computed<boolean>(() => hasProcessedMedias.value && !isInPro
 const convertOptions = computed<Array<{ value: MediaFormat; text: string }>>(() => [
   { value: 'gif', text: 'gif' },
   { value: 'webp', text: 'webp' },
+  { value: 'apng', text: 'apng' },
+  { value: 'mp4', text: 'mp4' },
+  { value: 'webm', text: 'webm' },
 ]);
 </script>
 

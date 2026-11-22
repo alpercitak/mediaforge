@@ -2,7 +2,7 @@ import { ffmpegArg } from '@mediaforge/ffmpeg/utils';
 import type { MediaFormat } from '@mediaforge/media/types';
 import type { ConvertOptions } from '../types';
 
-const baseFilter = ({ fps, width }: ConvertOptions): string => `fps=${fps},scale=${width}:-1:flags=lanczos`;
+const baseFilter = ({ fps, width }: ConvertOptions): string => `fps=${fps},scale=${width}:-2:flags=lanczos`;
 
 const apngArgs = (o: ConvertOptions): Array<string> => [
   ...ffmpegArg('-vf', baseFilter(o)),
