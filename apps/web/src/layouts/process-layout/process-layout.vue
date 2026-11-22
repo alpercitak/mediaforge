@@ -35,12 +35,17 @@ import FileInput from './components/file-input.vue';
 import { useBodyDrag } from './composables/body-drag';
 import { useFileInput } from './composables/file-input';
 
-const { ffmpegLoaded, progressValue } = storeToRefs(useFFmpegStore());
+const { ffmpegFailed, ffmpegLoaded, progressValue } = storeToRefs(useFFmpegStore());
 const { medias, processedMediasCount } = storeToRefs(useMediaStore());
 const { processFiles } = useFileInput();
 const { isDragging } = useBodyDrag(processFiles);
 
-const ffmpegStatus = computed<string>(() => `FFmpeg: ${ffmpegLoaded.value ? '✅' : '⏳'}`);
+const ffmpegStatus = computed<string>(() => {
+  if (ffmpegLoaded.value) {
+    return 'FFmpeg: ✅';
+  }
+  return ffmpegFailed.value ? 'FFmpeg: ❌ load failed, try again' : 'FFmpeg: ⏳';
+});
 </script>
 
 <style scoped>

@@ -4,7 +4,6 @@
 
 - Convert uses `scale=W:-1`; use `-2` for mp4/webm to avoid odd heights (`packages/ffmpeg-convert`; latent until Convert offers mp4/webm).
 - Concat drops audio (`a=0`) and always outputs 320×180.
-- ffmpeg core loads from unpkg at runtime (`src/stores/ffmpeg.ts`); self-host it. Load failures are only logged: status stays ⏳, no retry or user-facing error.
 
 ## Improvements
 
@@ -13,3 +12,4 @@
 - Convert only offers gif/webp at the default preset; packages support apng/mp4/webm and five presets.
 - Crop box is mouse-only (no touch).
 - Concurrent `getFFmpeg` calls can create two instances.
+- `@ffmpeg/core` is pinned in `src/stores/ffmpeg.ts` (`CORE_VERSION`), outside Dependabot; bump it with `@ffmpeg/ffmpeg`.
