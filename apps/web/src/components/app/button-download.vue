@@ -15,8 +15,8 @@ const onDownload = (): void => {
       return;
     }
     const a = document.createElement('a');
-    a.href = String(processed?.src);
-    a.download = `${file.name}.${processed?.extension}`;
+    a.href = processed.src;
+    a.download = `${file.name.replace(/\.[^.]+$/, '')}.${processed.extension}`;
     a.click();
   });
 };
